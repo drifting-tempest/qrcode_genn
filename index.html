@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang = "en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale1.0">
+        <title> QR CODE GENERATOR</title>
+    </head>
+
+
+</html>
+
+<body>
+
+    <div class="main">
+
+        <div class="generator">
+
+            <h1> QR Code Generator</h1>
+            <p> choose some pretty colors okay? :D</p>
+
+            <div class="gen-box">
+
+                <label class="gen-label" for = "gen-input"> qr code content?</label>
+                <input class="gen-input" id = "gen-input" type="text" placeholder="pls paste link tyyy">
+
+            </div>
+
+            <div class="gen-row">
+
+                <div class="gen-field">
+                    <label class="gen-label" for="gen-size">size</label>
+                    <select class="gen-select" id="gen-size">
+
+                        <option value="150">teeny</option>
+                        <option value="230">middd</option>
+                        <option value="300">largey</option>
+
+                    </select>
+                </div>
+
+                <div class="gen-field">
+                    <label class="gen-label" for="gen-level">errorr</label>
+                    <select class="gen-select" id="gen-level">
+
+                        <option value="low">low</option>
+                        <option value="medium">medium</option>
+                        <option value="high">high</option>
+
+                    </select>
+                </div>
+
+                <div class="gen-field">
+
+                    <p class="gen-label">qr code color</p>
+
+                    <div class="gen-color-box">
+
+                        <input class="gen-color-input" id="qr-color" type="color" value="#1e3a8a">
+
+                        <div class="colorss">
+
+                            <div class="gen-c" data-target="qr" data-color="#0c4a6e"></div>
+                            <div class="gen-c" data-target="qr" data-color="#1e3a8a"></div>
+                            <div class="gen-c" data-target="qr" data-color="#1d4ed8"></div>
+                            <div class="gen-c" data-target="qr" data-color="#2563eb"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="gen-field">
+
+                    <p class="gen-label"> bg color </p>
+
+                    <div class="gen-color-box">
+
+                        <input class="gen-color-input" id="bg-color" type="color" value="#1e3a8a">
+
+                        <div class="colorss">
+
+                            <div class="gen-c" data-target="qr" data-color="#0c4a6e"></div>
+                            <div class="gen-c" data-target="qr" data-color="#1e3a8a"></div>
+                            <div class="gen-c" data-target="qr" data-color="#1d4ed8"></div>
+                            <div class="gen-c" data-target="qr" data-color="#2563eb"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="gen-btn">
+                <div class="btn-text">generate!</div>
+            </div>
+
+            <div class="gen-message"></div>
+
+            <div class="gen-result">
+
+                <div class="gen-qr"></div>
+
+                <div class="gen-download">
+                    <div class="d1-text">download qr codee</div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</body>

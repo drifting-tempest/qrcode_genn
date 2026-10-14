@@ -57,16 +57,17 @@ genBtn.addEventListener("click", function() {
     } 
 
     else if (genLevel.value === "medium") {
-        level = QRCode.CorrectLevel.L;
+        level = QRCode.CorrectLevel.M;
     } 
 
     else {
-        level = QRCode.CorrectLevel.L;
+        level = QRCode.CorrectLevel.H;
     }
 
     if (tx === "") {
 
         genMessage.textContent = "type a link/any textt";
+        genMessage.classList.remove("good");
         genMessage.classList.add("show");
         genMessage.classList.add("bad");
         genResult.classList.remove("show");
@@ -75,6 +76,7 @@ genBtn.addEventListener("click", function() {
     else if (qrColor === bgColor) {
 
         genMessage.textContent = "both the colors can't be same";
+        genMessage.classList.remove("good");
         genMessage.classList.add("show");
         genMessage.classList.add("bad");
         genResult.classList.remove("show");
@@ -101,4 +103,106 @@ genBtn.addEventListener("click", function() {
         genMessage.classList.add("good");
     }
 
+});
+
+genInput.addEventListener("keydown", function(event) {
+
+    if (event.key === "Enter") {
+
+        var tx = genInput.value.trim();
+
+        var qrColor = qrColorInput.value;
+        var bgColor = bgColorInput.value;
+
+        var  size =  Number(genSize.value);
+
+        var level;
+
+        if (genLevel.value === "low") {
+            level = QRCode.CorrectLevel.L;
+        } 
+
+        else if (genLevel.value === "medium") {
+            level = QRCode.CorrectLevel.M;
+        } 
+
+        else {
+            level = QRCode.CorrectLevel.H;
+        }
+
+        if (tx === "") {
+
+            genMessage.textContent = "type a link/any textt";
+            genMessage.classList.remove("good");
+            genMessage.classList.add("show");
+            genMessage.classList.add("bad");
+            genResult.classList.remove("show");
+        }
+
+        else if (qrColor === bgColor) {
+
+            genMessage.textContent = "both the colors can't be same";
+            genMessage.classList.remove("good");
+            genMessage.classList.add("show");
+            genMessage.classList.add("bad");
+            genResult.classList.remove("show");
+        }
+
+        else {
+
+            genQr.innerHTML = "";
+
+            new QRCode(genQr, {
+
+                text: tx,
+                width: size,
+                height: size,
+                colorDark: qrColor,
+                colorLight: bgColor,
+                correctLevel: level
+            });
+
+            genResult.classList.add("show");
+            genMessage.textContent = "qr code readyayay: ";
+            genMessage.classList.remove("bad");
+            genMessage.classList.add("show");
+            genMessage.classList.add("good");
+        }
+
+    }
+
+});
+
+
+genDownload.addEventListener("click", function() {
+
+    var canvas = genQr.querySelector("canvas");
+
+    if (canvas === null) {
+
+        genMessage.textContent = "please make a QR Code firsttt";
+        genMessage.classList.remove("good");
+        genMessage.classList.add("show");
+        genMessage.classList.add("bad");
+
+    } 
+
+    else {
+
+        var link = document.createElement("a");
+        link.href = canvas.toDataURL("image/png");
+        link.download = "my-qr-code.png";
+        link.click();
+
+    }
+
+});
+
+
+genInput.addEventListener("input", function() {
+
+    genMessage.textContent = "";
+    genMessage.classList.remove("show");
+    genMessage.classList.remove("good");
+    genMessage.classList.remove("bad");
 });

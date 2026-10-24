@@ -24,6 +24,9 @@ const popupBgRow = document.querySelector(".popup-bg-row");
 const popupShuffle = document.querySelector(".popup-shuffle");
 const popupMsg = document.querySelector(".popup-msg");
 
+//for the copy function 
+const genCopy = document.querySelector(".gen-copy");
+const copyText = document.querySelector(".copy-text");
 
 colors[0].style.backgroundColor = colors[0].dataset.color;
 colors[1].style.backgroundColor = colors[1].dataset.color;
@@ -212,6 +215,46 @@ genDownload.addEventListener("click", function() {
 
 });
 
+genCopy.addEventListener("click", function() {
+
+    var canvas = genQr.querySelector("canvas");
+
+    if (canvas === null) {
+
+        genMessage.textContent = "please make a QR Code firsttt";
+        genMessage.classList.remove("good");
+        genMessage.classList.add("show");
+        genMessage.classList.add("bad");
+    }
+
+    else {
+
+        canvas.toBlob(function(blob) {
+
+            var item = new ClipboardItem({ "image/png": blob });
+
+            navigator.clipboard.write([item]).then(function() {
+
+                copyText.textContent = "copied!";
+
+                setTimeout(function() {
+                    copyText.textContent = "copy qr code";
+                }, 1500);
+
+            }).catch(function(error) {
+
+                console.log(error);   // testing stuff
+
+                genMessage.textContent = "couldn't copy, try the download button";
+                genMessage.classList.remove("good");
+                genMessage.classList.add("show");
+                genMessage.classList.add("bad");
+            });
+
+        }, "image/png");
+    }
+
+});
 
 genInput.addEventListener("input", function() {
 

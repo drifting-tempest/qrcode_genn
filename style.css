@@ -41,7 +41,7 @@ body {
     display: inline-block;
     font-size:28px;
     background-color: var(--medium-slate-blue);
-    border: 3px var(--midnight-violet);
+    border: 3px solid var(--midnight-violet);
     padding: 15px;
     margin-bottom: 16px;
     margin-top: none;
@@ -98,7 +98,7 @@ body {
     font-size:15px;
     color:var(--midnight-violet);
     background-color:var(--lavender-veil);
-    border:2px var(--midnight-violet);
+    border:2px solid var(--midnight-violet);
     padding:10px 12px;
     outline:none;
 }
@@ -248,4 +248,56 @@ body {
 .d1-text{
     font-size:16px;
     font-weight:bold;
+}
+
+.confetti-box{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:10;
+}
+
+.confetti-piece{
+    position:absolute;
+    top:-20px;
+    border:2px solid var(--midnight-violet);
+    animation-name:confetti-fall;
+    animation-timing-function:linear;
+    animation-fill-mode:forwards;
+}
+
+.confetti-color-0{
+    background-color:var(--lavender-veil);
+}
+
+.confetti-color-1{
+    background-color:var(--medium-slate-blue);
+}
+
+.confetti-color-2{
+    background-color:var(--rebecca-purple);
+}
+
+.confetti-color-3{
+    background-color:var(--charcoal);
+}
+
+.confetti-color-4{
+    background-color:var(--midnight-violet);
+}
+
+@keyframes confetti-fall{
+
+    0%{
+
+        transform:translateY(0) rotate(0deg);
+    }
+    
+    100%{
+        transform:translateY(110vh) rotate(540deg);
+    }
 }

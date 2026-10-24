@@ -13,6 +13,9 @@ const genResult = document.querySelector(".gen-result");
 const genQr = document.querySelector(".gen-qr");
 const genDownload = document.querySelector(".gen-download");
 
+const confettiBox = document.querySelector(".confetti-box"); 
+//for the confetti function, but added here js to put all the definition statements together
+
 colors[0].style.backgroundColor = colors[0].dataset.color;
 colors[1].style.backgroundColor = colors[1].dataset.color;
 colors[2].style.backgroundColor = colors[2].dataset.color;
@@ -101,6 +104,7 @@ genBtn.addEventListener("click", function() {
         genMessage.classList.remove("bad");
         genMessage.classList.add("show");
         genMessage.classList.add("good");
+        makeConfetti();
     }
 
 });
@@ -167,6 +171,7 @@ genInput.addEventListener("keydown", function(event) {
             genMessage.classList.remove("bad");
             genMessage.classList.add("show");
             genMessage.classList.add("good");
+            makeConfetti();
         }
 
     }
@@ -206,3 +211,35 @@ genInput.addEventListener("input", function() {
     genMessage.classList.remove("good");
     genMessage.classList.remove("bad");
 });
+
+//last stuff regarding the QR Code itself
+
+function makeConfetti() {
+
+    var howMany = 50;
+
+    for (var i = 0; i < howMany; i++) {
+
+        var piece = document.createElement("div");
+        piece.classList.add("confetti-piece");
+
+        var colorNumber = Math.floor(Math.random() * 5);
+        piece.classList.add("confetti-color-" + colorNumber);
+
+        piece.style.left = Math.random() * 100 + "%";
+
+        var pieceSize = 8 + Math.random() * 8;
+        piece.style.width = pieceSize + "px";
+        piece.style.height = pieceSize + "px";
+
+        piece.style.animationDuration = 2 + Math.random() * 2 + "s";
+        piece.style.animationDelay = Math.random() * 0.8 + "s";
+
+        piece.addEventListener("animationend", function() {
+            this.remove();
+        });
+
+        confettiBox.appendChild(piece);
+
+    }
+}

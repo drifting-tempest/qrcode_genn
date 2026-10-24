@@ -16,6 +16,15 @@ const genDownload = document.querySelector(".gen-download");
 const confettiBox = document.querySelector(".confetti-box"); 
 //for the confetti function, but added here js to put all the definition statements together
 
+const ideaBtn = document.querySelector(".idea-btn");
+const popupBack = document.querySelector(".popup-back");
+const popupClose = document.querySelector(".popup-close");
+const popupQrRow = document.querySelector(".popup-qr-row");
+const popupBgRow = document.querySelector(".popup-bg-row");
+const popupShuffle = document.querySelector(".popup-shuffle");
+const popupMsg = document.querySelector(".popup-msg");
+
+
 colors[0].style.backgroundColor = colors[0].dataset.color;
 colors[1].style.backgroundColor = colors[1].dataset.color;
 colors[2].style.backgroundColor = colors[2].dataset.color;
@@ -243,3 +252,76 @@ function makeConfetti() {
 
     }
 }
+
+
+//code related to color suggestions + shuffler
+
+function randomColor(low, high) {
+
+    var r = low + Math.floor(Math.random() * (high - low + 1));
+    var g = low + Math.floor(Math.random() * (high - low + 1));
+    var b = low + Math.floor(Math.random() * (high - low + 1));
+
+    return "#" + r.toString(16).padStart(2, "0") + g.toString(16).padStart(2, "0") + b.toString(16).padStart(2, "0");
+}
+
+function fillIdeas() {
+
+    popupQrRow.innerHTML = "";
+    popupBgRow.innerHTML = "";
+    popupMsg.textContent = "";
+
+    for (var i = 0; i < 5; i++) {
+
+        var darkOne = randomColor(0, 120);
+
+        var lightOne = randomColor(190, 255);
+
+        var sw1 = document.createElement("div");
+        sw1.classList.add("popup-sw");
+        sw1.style.backgroundColor = darkOne;
+        sw1.dataset.color = darkOne;
+        sw1.addEventListener("click", function() {
+            qrColorInput.value = this.dataset.color;
+            popupMsg.textContent = "qr color set to " + this.dataset.color;
+        });
+        popupQrRow.appendChild(sw1);
+
+        // the light colors
+        var sw2 = document.createElement("div");
+        sw2.classList.add("popup-sw");
+        sw2.style.backgroundColor = lightOne;
+        sw2.dataset.color = lightOne;
+        sw2.addEventListener("click", function() {
+            bgColorInput.value = this.dataset.color;
+            popupMsg.textContent = "background color set to " + this.dataset.color;
+        });
+        popupBgRow.appendChild(sw2);
+    }
+}
+
+
+ideaBtn.addEventListener("click", function() {
+    fillIdeas();
+    popupBack.classList.add("show");
+});
+
+popupShuffle.addEventListener("click", function() {
+    fillIdeas();
+});
+
+popupClose.addEventListener("click", function() {
+    popupBack.classList.remove("show");
+});
+
+popupBack.addEventListener("click", function(event) {
+    if (event.target == popupBack) {
+        popupBack.classList.remove("show");
+    }
+});
+
+document.addEventListener("keydown", function(event) {
+    if (event.key == "Escape") {
+        popupBack.classList.remove("show");
+    }
+});

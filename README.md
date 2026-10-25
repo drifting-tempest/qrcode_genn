@@ -9,6 +9,7 @@ A QR Code Generator that lets the user generate a QR Code and also lets them cho
 3. Vertical overflow of elements + objects that appear after user interaction
 
 Link (Live Demo): https://drifting-tempest.github.io/qrcode_genn/
+
 Made with love, Sakura
 
 
